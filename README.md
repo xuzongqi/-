@@ -65,3 +65,30 @@ int ListLength_L(LinkList& L)
 	}
 	return i;
 }
+
+//
+struct ListNode {
+	int val;
+	struct ListNode* next;
+};
+struct ListNode* deleteDuplicates(struct ListNode* head)
+{
+	//ListNode p = head->next;//缺乏构造方法
+	if (!head)
+	{
+		return head;//若内容为空，返回原值
+	}
+	struct ListNode* cur = head;//避免对head直接处理
+	while (cur->next)//这个是访问下一项的值
+	{
+		if (cur->val == cur->next->val)
+		{
+			cur->next = cur->next->next;
+		}
+		else
+		{
+			cur=cur->next;//这个是移动指针位置
+		}
+	}
+	return head;
+}
