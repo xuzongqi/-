@@ -92,3 +92,36 @@ struct ListNode* deleteDuplicates(struct ListNode* head)
 	}
 	return head;
 }
+
+
+//疑难解答
+
+typedef struct BiNode
+{
+	TElemType data;
+	struct BiNode* lchild, * rchild;
+}BiNode,*BiTree;
+
+*BiTree 表示 BiTree 是一个指针类型。在这个上下文中，BiTree 是一个别名，表示指向 BiNode 结构体的指针类型。
+
+具体地说，由于 BiTree 是一个指向 BiNode 结构体的指针类型的别名，因此 *BiTree 表示对 BiTree 类型的指针进行解引用操作，得到指向 BiNode 结构体的实际指针。
+
+例如，如果有一个 BiTree 类型的指针变量 T，可以使用 *T 来访问 BiNode 结构体中的成员变量。例如，可以使用 (*T)->data 来访问 BiNode 结构体中的 data 成员变量。
+
+需要注意的是，这里的 *BiTree 表示指针类型，而不是指针变量。指针变量声明时需要加上 * 符号，比如 BiTree* T 声明了一个指向 BiNode 结构体的指针变量 T。
+
+BiTree*T 和 BiTree T 是有区别的。
+
+BiTree*T 表示 T 是一个指针变量，其类型是 BiTree，即指向 BiNode 结构体的指针变量。
+
+BiTree T 表示 T 是一个普通变量，其类型是 BiTree，即 BiNode 结构体。
+
+具体来说，假设 BiTree 是一个指向 BiNode 结构体的指针类型的别名，那么：
+
+BiTree* T 声明了一个指向 BiNode 结构体的指针变量 T。
+BiTree T 声明了一个普通变量 T，其类型是 BiNode 结构体。
+在用法上也有所不同：
+
+BiTree* T 可以通过 T 来访问指针所指向的 BiNode 结构体的成员变量，需要使用 -> 运算符进行访问，例如 T->data。
+BiTree T 可以直接通过 T 来访问 BiNode 结构体的成员变量，使用 . 运算符，例如 T.data。
+总结：BiTree*T 声明一个指针变量，而 BiTree T 声明一个普通的结构体变量。
