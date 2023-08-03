@@ -125,3 +125,39 @@ BiTree T 声明了一个普通变量 T，其类型是 BiNode 结构体。
 BiTree* T 可以通过 T 来访问指针所指向的 BiNode 结构体的成员变量，需要使用 -> 运算符进行访问，例如 T->data。
 BiTree T 可以直接通过 T 来访问 BiNode 结构体的成员变量，使用 . 运算符，例如 T.data。
 总结：BiTree*T 声明一个指针变量，而 BiTree T 声明一个普通的结构体变量。
+
+//关于
+
+void PreOrderTraverse(BiTree T) 和 void PreOrderTraverse(BiTree* T) 在参数传递方式上有区别。
+
+void PreOrderTraverse(BiTree T): 这个函数接受的参数是一个指向 BiNode 结构体的指针类型的别名 BiTree，但在函数内部直接使用 T 来访问结构体成员。这意味着函数接受的是实际的结构体变量而不是指针，传递时会进行值传递，即传递的是变量的副本。
+
+
+void PreOrderTraverse(BiTree T)
+{
+    // 使用 T 访问结构体成员
+    // ...
+}
+调用函数时需要传递一个 BiNode 结构体变量的副本，例如：
+
+
+BiNode node;
+PreOrderTraverse(node);
+在函数内部对 T 所作的修改不会影响到原始的结构体变量。
+
+void PreOrderTraverse(BiTree* T): 这个函数接受的参数是一个指向 BiNode 结构体的指针的指针类型 BiTree*，在函数内部需要使用 *T 来访问结构体成员。这意味着函数接受的是指针的指针，传递时会传递指针的地址。
+
+
+void PreOrderTraverse(BiTree* T)
+{
+    // 使用 *T 访问结构体成员
+    // ...
+}
+调用函数时需要传递一个 BiNode 结构体指针的地址，例如：
+
+
+BiNode* nodePtr;
+PreOrderTraverse(&nodePtr);
+在函数内部对 *T 所作的修改会影响到原始的结构体指针。
+
+总结：void PreOrderTraverse(BiTree T) 接受变量副本作为参数，而 void PreOrderTraverse(BiTree* T) 接受指针的地址作为参数。在函数内部的使用方式和对原始变量的影响上有所不同。
