@@ -83,9 +83,9 @@ void ClearList(LinkList& L)
 	p = L->next;
 	while (p)//不能删头指针
 	{
-		q = p->next;
-		free(p);
-		p = q;
+		q = p;
+  		p = p->next;
+		free(q);
 	}
 	L->next = NULL;//最后处理头指针
 }
