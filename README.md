@@ -12,6 +12,42 @@ typedef struct LNode
 //算法步骤
 //单链表初始化（1）生成新结点作头结点，用头指针L指向头结点 
 //（2）头指针指针域置空
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// 不用typedef定义链表节点结构体
+struct Node {
+    int data;           // 节点数据
+    struct Node* next;  // 下一个节点指针
+};
+
+// 初始化链表，创建头结点
+struct Node* initializeLinkedList() {
+    // 创建头结点
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    if (head == NULL) {
+        printf("内存分配失败\n");
+        return NULL;
+    }
+    
+    // 头结点不存储任何实际数据，将指针域置为空
+    head->data = 0;
+    head->next = NULL;
+
+    return head;
+}
+
+int main() {
+    // 初始化链表
+    struct Node* head = initializeLinkedList();
+    
+    // 链表操作...
+    
+    return 0;
+}
+
+
 void InitList_L(LinkList& L)
 {
 	L = (LinkList)malloc(sizeof(LNode));//C++用的是new
