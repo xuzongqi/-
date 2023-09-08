@@ -197,3 +197,57 @@ PreOrderTraverse(&nodePtr);
 在函数内部对 *T 所作的修改会影响到原始的结构体指针。
 
 总结：void PreOrderTraverse(BiTree T) 接受变量副本作为参数，而 void PreOrderTraverse(BiTree* T) 接受指针的地址作为参数。在函数内部的使用方式和对原始变量的影响上有所不同。
+
+#用数组表示链表
+const int N = 10000;
+int e[N], ne[N], head, idx;
+//ne[N]储存的是下标
+// 
+////头插法
+//void add(int*e,int x)
+//{
+//	head = 0;
+//	int temp = e[head];
+//	e[head] = x;
+//	head++;
+//	e[head] = temp;
+//}
+void add(int x)
+{
+	//全局变量一直在变
+	e[idx] = x;
+	printf("e[idx] = %d\n", e[idx]);
+	ne[idx] = head;
+	/*int temp = head;*/
+	printf("ne[idx] = %d\n", ne[idx]);
+	head = idx++;
+	printf("head = %d\n", head);
+}
+void remove(int k)//移除第k个元素
+{
+	//ne[k]就是第k个元素的下标（k-1）
+	//e[k + 1] = e[k];
+	ne[k] = ne[ne[k]];
+}
+
+int main()
+{
+	head = -1;
+	/*int nums[N] = { 1,2,3,1,1,3 };*/
+	add(2);
+	add(3);
+	add(4);
+	add(5);
+	remove(1);
+	/*char s[] = {'a','a', 'a', 'a', 'b'};
+	char t[] = { 'b','b', 'b', 'b', 'a'};*/
+	printf("----------------------------------1-------------\n");
+	//指针的方法
+	//head已经改变
+	for (int i = head; i != -1; i = ne[i]) {
+		printf("%d ", e[i]);
+	}
+	printf("\n");
+	printf("----------------------------------2-------------\n");
+	return 0;
+}
